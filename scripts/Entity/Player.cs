@@ -14,7 +14,7 @@ public enum Directions
     Up,
     Down,
     Left,
-    Right
+    Right,
 }
 
 public enum PlayerState
@@ -216,8 +216,8 @@ public class Player : SpriteEntity
 
         UpdateTextureFrame();
 
+        #region door
         // Door/Scene transitions disabled - uncomment to re-enable
-        /*
         Door door = Scene.WhichEntityColliding(this, "door") as Door;
         if (door != null)
         {
@@ -230,7 +230,8 @@ public class Player : SpriteEntity
             }
             _scene.ChangeScene(door.NextScene);
         }
-        */
+        #endregion
+
         #region Item Pickup
         ItemPickUp pickup = _scene.WhichEntityColliding(this, "item") as ItemPickUp;
         if (pickup != null && !pickup.isDead)
@@ -291,6 +292,7 @@ public class Player : SpriteEntity
         desiredDirection = Vector2.Zero;
         Directions? chosenDirection = null;
 
+        #region move
         // Keyboard input takes priority over mouse movement
         if (hasKeyboardInput)
         {
@@ -358,7 +360,9 @@ public class Player : SpriteEntity
                 _mouseTargetPosition = null;
             }
         }
+        #endregion
 
+        #region attack
         //attack
         if (ServiceLocator.Input.IsActionPressed(Action.ActionA) && ServiceLocator.GameState != null && ServiceLocator.GameState.HasSword)
         {
@@ -423,7 +427,9 @@ public class Player : SpriteEntity
             Projectile projectile = new Projectile(projectilePos, CurrentDirection, this, _attack, 350f);
             _scene.AddEntity(projectile);
             _shootTimer = ShootCooldown;
+            CurrentState = PlayerState.Attacking;
         }
+        #endregion
     }
     #endregion
 

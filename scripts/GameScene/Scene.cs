@@ -32,6 +32,7 @@ public class Scene : GameScreen
     private readonly string _levelName;
     public string LevelName => _levelName;
 
+    #region constructor
     public Scene(string levelName)
     {
         _levelName = levelName;
@@ -51,10 +52,12 @@ public class Scene : GameScreen
             SceneOffset.Y + GameSceneSize.Y / 2 - Grid.TileSize / 2
         );
         AddEntity(new Player(centerPos, Art.Player));
+        AddEntity(new Door(centerPos + new Vector2(64, 0), Art.Cave, "underground"));
 
         // Spawn enemies directly in this screen
         SpawnEnemiesInScreen();
     }
+    #endregion
 
     #region spawn enemies
     // Simple enemy spawning in current screen
@@ -212,6 +215,7 @@ public class Scene : GameScreen
     */
     #endregion
 
+    #region update
     public override void Update(GameTime gameTime)
     {
         for (int i = 0; i < _entities.Count; i++)
@@ -231,7 +235,9 @@ public class Scene : GameScreen
         }
         _deadList.Clear();
     }
+    #endregion
 
+    #region draw
     public override void Draw(SpriteBatch spriteBatch)
     {
         DrawWorld(spriteBatch);
@@ -282,7 +288,9 @@ public class Scene : GameScreen
         _entities.Remove(entity);
         entity.RemoveFromScene(this);
     }
+    #endregion
 
+    #region tools
     /// <summary>
     /// Find and return the player entity in the scene
     /// </summary>
@@ -311,9 +319,9 @@ public class Scene : GameScreen
         finished = true;
         nextScene = _nextScene;
     }
+    #endregion
 
     #region Collision Detection
-
     public bool IsColliding(Entity entity, string label = "")
     {
         for (int i = 0; i < _entities.Count; i++)
@@ -453,5 +461,4 @@ public class Scene : GameScreen
         return topRightSolid || topLeftSolid || bottomRightSolid || bottomLeftSolid;
     }
     #endregion
-
 }

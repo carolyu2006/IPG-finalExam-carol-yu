@@ -94,5 +94,6 @@ public class ButtonEntity : Entity
         _position = newPosition;
         _rect = new Rectangle((int)_position.X, (int)_position.Y, _width, _height);
     }
+
 }
 

@@ -14,6 +14,10 @@ public enum Item { None, Sword, Coin }
 
 public enum Art
 {
+    apple,
+    banana,
+    blueberry,
+    snake,
     Pixel,
     Enemy,
     Player,

@@ -1,0 +1,31 @@
+{
+  "enemies": {
+    "Spider": {
+      "maxHealth": 1,
+      "attack": 1,
+      "speed": 2.5,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "Shooter": {
+      "maxHealth": 2,
+      "attack": 1,
+      "speed": 1.5,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "Chaser": {
+      "maxHealth": 1,
+      "attack": 1,
+      "speed": 3.0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  }
+}

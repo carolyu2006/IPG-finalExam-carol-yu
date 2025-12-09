@@ -45,8 +45,12 @@ namespace Template
             // Load all game assets
             AssetManager.LoadContent(Content);
 
+            // Load enemy stats from JSON
+            Enemy.LoadEnemyStatsFromJson("Data/enemy.json");
+
             // Start with default scene - customize this
-            ScreenManager.ChangeScreen(new SceneScreen("Zelda12"));
+            // ScreenManager.ChangeScreen(new SceneScreen("Zelda12"));
+            ScreenManager.ChangeScreen(new StartScreen());
 
             base.Initialize();
         }
