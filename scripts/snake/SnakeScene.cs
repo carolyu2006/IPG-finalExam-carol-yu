@@ -279,17 +279,17 @@ public class SnakeScene : GameScreen
         switch (level)
         {
             case levelEnum.normal:
-                _moveInterval = 0.5f;
+                _moveInterval = 1f;
                 spawnSpikeCount1 = 12;
                 spawnSpikeCount2 = 20;
                 break;
             case levelEnum.hard:
-                _moveInterval = 0.4f;
+                _moveInterval = .6f;
                 spawnSpikeCount1 = 8;
                 spawnSpikeCount2 = 14;
                 break;
             default:
-                _moveInterval = 0.5f;
+                _moveInterval = 1f;
                 break;
         }
         SpawnFood();
