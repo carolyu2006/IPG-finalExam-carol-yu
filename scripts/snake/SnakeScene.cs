@@ -213,14 +213,16 @@ public class SnakeScene : GameScreen
         }
 
         _snake.Insert(0, newHead);
-        int segmentsToAdd = 0;
 
         if (newHead == _food.Position)
         {
-            segmentsToAdd = foodSegmentsDict[_food.Type];
-            Console.WriteLine("Segments to add: " + segmentsToAdd);
+            int segmentsToAdd = foodSegmentsDict[_food.Type];
 
-            // Add the specified number of segments to the snake
+            for (int i = 0; i < segmentsToAdd; i++)
+            {
+                _snake.Add(_snake[^1]);
+                Console.WriteLine("Adding segment");
+            }
 
             foodCount += 1;
             totalFoodCount += 1;
@@ -244,16 +246,12 @@ public class SnakeScene : GameScreen
                     return;
                 }
             }
+            _snake.RemoveAt(_snake.Count - 1);
         }
         else
         {
-            // addSegment = false;
             _snake.RemoveAt(_snake.Count - 1);
         }
-        // for (int i = 0; i < segmentsToAdd; i++)
-        // {
-        //     _snake.Add(_snake[^1]);
-        // }
     }
     #endregion
 
